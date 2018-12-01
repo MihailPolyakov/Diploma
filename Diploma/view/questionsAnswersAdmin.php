@@ -40,7 +40,15 @@
 				</td>
 				<td>
 					<p><?php echo $value['login'];?></p>
-					<p><a href="?editUser=<?php echo $value['id']?>&&idUser=<?php echo($value['id_user'])?>">Изменить автора</a></p>
+					<form action="" method="POST">
+						<input type="hidden" name="idQuestion" value="<?php echo $value['id'];?>">
+						<select name = 'editUser'>
+							<?php foreach ($pdo->query($users -> users) as  $logins) {?>
+								<option value="<?php echo $logins['id']?>"><?php echo $logins['login']?></option>
+							<?php } ?> 
+							<input type="submit" value="Изменить автора">
+						</select>
+					</form>
 				</td>
 				<td>
 					<?php if (is_null($value['answer'])) {?>
