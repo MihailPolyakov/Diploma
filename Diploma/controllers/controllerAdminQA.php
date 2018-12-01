@@ -78,13 +78,17 @@ class QuestionsAndAnswers
 		}
 	}
 
-	//Нужно доделать
+	//изменяем автора вопроса
 	function editUser()
 	{
-		if (!empty($_GET['editUser'])) {
+
+		if (!empty($_POST['editUser'])) {
+			$editUser = new UpdateAny;
+			$editUser -> update('questions', 'id_user', $_POST['editUser'], $_POST['idQuestion']);
 			header('location: controllerAdminQA.php');
 		}
 	}
+	
 	//переадресация на форму для изменения ответа с сохранением ID вопроса и ID Ответа
 	function editAnswer()
 	{
