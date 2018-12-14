@@ -1,4 +1,4 @@
-<form action="" method="GET">
+<form action="index.php" method="GET">
 	<input type="hidden" name="id" value="<?php echo $_GET['editAdmin']?>">
 	<input type="text" name="editlogin">
 	<input type="text" name="editpassword">

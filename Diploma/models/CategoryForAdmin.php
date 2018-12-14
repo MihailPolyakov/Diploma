@@ -4,10 +4,9 @@
  */
 class CategoryForAdmin
 {
-	//функция создает массив с данным о категория, и подсчет количества вопросов, опубликованных вопросов и вопросов без ответа
-	function categoryForAdmin() 
+	//функция создает массив с данным о категориях, и подсчет количества вопросов, опубликованных вопросов и вопросов без ответа
+	public function categoryForAdmin($pdo) 
 	{
-		$pdo = new PDO("mysql:host=localhost;dbname=diploma_php", "Miha", "Qwerty123");	
 		$categories = "SELECT id, category FROM categories";
 		$arrayCategory = [];
 		$key = -1;

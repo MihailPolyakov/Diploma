@@ -4,7 +4,7 @@
 	<title><?php echo $_SESSION['category']?></title>
 </head>
 <body>
-	<a href="../controllers/controllerAdminHP.php">Вернуться на домашнюю страницу</a>
+	<a href="index.php?controller=AdminHP">Вернуться на домашнюю страницу</a>
 	<table>
 		<tr>
 			<td>Вопрос</td>
@@ -15,7 +15,7 @@
 			<td>Ответ</td>
 		</tr>
 		<?php
-		foreach ($pdo->query($select -> questionAnswer($_SESSION['id'])) as  $value) {?>
+		foreach ($this->pdo->query($select -> questionAnswer($_SESSION['id'])) as  $value) {?>
 			<tr>
 				<td><?php echo $value['question'];?></td>
 				<td><?php echo $value['date'];?></td>
@@ -25,7 +25,7 @@
 					<a href="?editQuestion=<?php echo $value['id'];?>">Редактировать вопрос</a>
 					<form action="" method="POST">
 						<select name = 'category'>
-						<?php foreach ($pdo->query($categories -> categories) as $cat) {?>
+						<?php foreach ($this->pdo->query($categories -> categories) as $cat) {?>
 							<option value="<?php echo $cat['id'];?>"><?php echo $cat['category'];?></option>
 						<?php } ?>
 						</select>
@@ -43,7 +43,7 @@
 					<form action="" method="POST">
 						<input type="hidden" name="idQuestion" value="<?php echo $value['id'];?>">
 						<select name = 'editUser'>
-							<?php foreach ($pdo->query($users -> users) as  $logins) {?>
+							<?php foreach ($this->pdo->query($users -> users) as  $logins) {?>
 								<option value="<?php echo $logins['id']?>"><?php echo $logins['login']?></option>
 							<?php } ?> 
 							<input type="submit" value="Изменить автора">

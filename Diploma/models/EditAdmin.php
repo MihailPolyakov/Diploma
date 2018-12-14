@@ -5,9 +5,8 @@
 class EditAdmin
 {
 	//фйнкция на изменение логина и пароля администратору
-	function edit($login, $password, $id) 
+	public function edit($login, $password, $id, $pdo) 
 	{
-		$pdo = new PDO("mysql:host=localhost;dbname=diploma_php", "Miha", "Qwerty123");
 		$edit = $pdo->prepare("UPDATE users SET login = '$login', password = '$password' WHERE id = $id");
 		$edit->execute();
 	}

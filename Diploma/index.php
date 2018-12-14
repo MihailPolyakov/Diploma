@@ -1,13 +1,56 @@
 <?php
+session_start();
+//Загружаем файлы с автолоударем и подключением к БД
+require "models/connectDB.php";
+require "models/autoload.php";
 
-class ConnectToController 
-{
+//проверка на присутствие гет параметра с именем контроллера, отправляются при переходе на другой контроллер или выходе на главную страницу
+if (!empty($_GET['controller'])) {
+	$_SESSION['controller'] = $_GET['controller'];
+}
+//проверка на присутствие пост запроса с именем логина, для обнуления сессии
+if (!empty($_POST['login'])) {
+	$_SESSION['login'] = NULL;
+}
+//проверка на присутствие параметров, по которым можно определить, что нужно вызвать контроллер с вопросами и ответами для Администратора
+if ((!empty($_GET['idcatadmin']) && !empty($_GET['category'])) || $_SESSION['controller'] == 'AdminQA') {	
 	
-	function connect($header)
-	{
-		return header("location: $header");
-	}
+	$homePageAdmin = new ControllerAdminHP($pdo);
+	$homePageAdmin -> transferAnotherController();
+	
+	$questionAnswers = new ControllerAdminQA($pdo);
+	$questionAnswers -> deleteQuestion();
+	$questionAnswers -> editQuestion();
+	$questionAnswers -> newQuestion();
+	$questionAnswers -> category();
+	$questionAnswers -> hiddenQuestion();
+	$questionAnswers -> publishedQuestion();
+	$questionAnswers -> editUser();
+	$questionAnswers -> editAnswer();
+	$questionAnswers -> postNewAnswer();
+	$questionAnswers -> showQuestionsAnswers();
+//проверка на присутствие параметров, по которым можно определить, что нужно вызвать контроллер с домашней для Администратора
+} elseif (!empty($_POST['login']) ||  $_SESSION['controller'] == 'AdminHP') {
+	$homePageAdmin = new ControllerAdminHP($pdo);
+	$homePageAdmin -> newCategory();
+	$homePageAdmin -> deleteAdmin();
+	$homePageAdmin -> newLogin();
+	$homePageAdmin -> editLogin();
+	$homePageAdmin -> editAdmin();
+	$homePageAdmin -> deleteCategory();
+	$homePageAdmin -> categories();
+//проверка на присутствие параметров, по которым можно определить, что нужно вызвать контроллер с вопросами и ответами для юзера	
+} elseif ((!empty($_GET['idcat']) && !empty($_GET['category'])) || $_SESSION['controller'] == 'UserQA') {
+	$user = new ControllerUserHP($pdo);
+	$user -> controllerUserQA($_GET['idcat'], $_GET['category']);
+
+	$idCategory = new ControllerUserQA($pdo);
+	$idCategory -> insertQuestion($_POST['name']);
+	$idCategory -> askQuestion($_GET['ask']);
+	$idCategory -> questionsAnswers($_SESSION['id']);	
+	//в случае если не одно условие не выполнелось вызывается контроллер с домашней страницей
+} else {
+	$user = new ControllerUserHP($pdo);
+	$user -> homePage($_GET['admin']);
 }
 
-$header = new ConnectToController;
-$header->connect('controllers/controllerUserHP.php');

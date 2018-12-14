@@ -1,3 +1,3 @@
-<form action='../controllers/controllerAdminQA.php' method="POST">
+<form action='../index.php' method="POST">
 	<input type="text" name="newUser">
 </form>

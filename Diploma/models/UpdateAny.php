@@ -4,8 +4,8 @@
  */
 class UpdateAny
 {
-	function update($db, $whatUpdate, $value, $id ){
-		$pdo = new PDO("mysql:host=localhost;dbname=diploma_php", "Miha", "Qwerty123");
+	//фйнкция на обновление информации в БД
+	public function update($db, $whatUpdate, $value, $id, $pdo ){
 		$update = $pdo->prepare("UPDATE $db set $whatUpdate = '$value' WHERE id = $id");
 		$update->execute(); 
 	}

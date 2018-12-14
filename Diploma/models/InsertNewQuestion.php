@@ -5,10 +5,9 @@
  */
 class InsertNewQuestion
 {
-	
-	function insertQuestion($name, $mail, $question, $idCategory)
+	//функция на добавление нового вопроса
+	public function insertQuestion($name, $mail, $question, $idCategory, $pdo)
 	{
-		$pdo = new PDO("mysql:host=localhost;dbname=diploma_php", "Miha", "Qwerty123");
 		$createUser = $pdo->prepare("INSERT INTO users (login, mail) VALUES (:login, :mail)");
 		$createUser->bindParam(':login', $name);
 		$createUser->bindParam(':mail', $mail);

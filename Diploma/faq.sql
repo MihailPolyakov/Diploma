@@ -11,12 +11,12 @@ CREATE TABLE `users` (
   `login` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `mail` varchar(50) NULL,
-  `right` varchar(50) NOT NULL,
+  `privilege` varchar(50) NOT NULL,
   `data` datetime NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO 'users' ('login', 'password', 'right') VALUES ('admin', 'admin', 'admin');
+INSERT INTO users (login, password, privilege) VALUES ('admin', 'admin', 'admin');
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
