@@ -42,15 +42,15 @@ if ((!empty($_GET['idcatadmin']) && !empty($_GET['category'])) || $_SESSION['con
 //проверка на присутствие параметров, по которым можно определить, что нужно вызвать контроллер с вопросами и ответами для юзера	
 } elseif ((!empty($_GET['idcat']) && !empty($_GET['category'])) || $_SESSION['controller'] == 'UserQA') {
 	$user = new ControllerUserHP($pdo);
-	$user -> controllerUserQA($_GET['idcat'], $_GET['category']);
+	$user -> controllerUserQA();
 
 	$idCategory = new ControllerUserQA($pdo);
-	$idCategory -> insertQuestion($_POST['name']);
-	$idCategory -> askQuestion($_GET['ask']);
-	$idCategory -> questionsAnswers($_SESSION['id']);	
+	$idCategory -> insertQuestion();
+	$idCategory -> askQuestion();
+	$idCategory -> questionsAnswers();	
 	//в случае если не одно условие не выполнелось вызывается контроллер с домашней страницей
 } else {
 	$user = new ControllerUserHP($pdo);
-	$user -> homePage($_GET['admin']);
+	$user -> homePage();
 }
 
