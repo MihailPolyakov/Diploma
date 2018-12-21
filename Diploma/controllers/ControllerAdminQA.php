@@ -95,7 +95,7 @@ class ControllerAdminQA
 		if (!empty($_POST['editAnswer'])) {
 			$updateNewAnswer = new UpdateAny;
 			$insertAnswer = new InsertNewAnswer;
-			if ($_POST['withPublished']) {
+			if (!empty($_POST['withPublished'])) {
 				$updateNewAnswer -> update('questions', 'status', 'published', $_POST['idQuestion'], $this->pdo);
 				if (!empty($_POST['idAnswer'])) {
 					$updateNewAnswer -> update('answers', 'answer', $_POST['editAnswer'], $_POST['idAnswer'], $this->pdo);
