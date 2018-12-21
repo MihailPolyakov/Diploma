@@ -30,9 +30,10 @@ DROP TABLE IF EXISTS `questions`;
 CREATE TABLE `questions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `question` text(10000) NOT NULL,
-  `data` timestamp NOT NULL DEFAULT NOW(),
+  `date` timestamp NOT NULL DEFAULT NOW(),
   `id_user` int(11) NOT NULL,
   `id_category` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
