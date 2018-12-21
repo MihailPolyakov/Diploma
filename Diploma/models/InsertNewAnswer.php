@@ -5,8 +5,7 @@
 class InsertNewAnswer
 {
 	//функция создания нового ответа с ID вопросом
-	public function insertAnswer($answer, $idQuestion){
-		$pdo = new PDO("mysql:host=localhost;dbname=diploma_php", "Miha", "Qwerty123");
+	public function insertAnswer($answer, $idQuestion, $pdo){
 		$createUser = $pdo->prepare("INSERT INTO answers (answer, id_question) VALUES (:answer, :id_question)");
 		$createUser->bindParam(':answer', $answer);
 		$createUser->bindParam(':id_question', $idQuestion);
