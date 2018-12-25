@@ -4,7 +4,7 @@
 	<title><?php echo $_SESSION['category']?></title>
 </head>
 <body>
-	<a href="index.php?controller=AdminHP">Вернуться на домашнюю страницу</a>
+	<a href="?homepage=admin">Вернуться на домашнюю страницу</a>
 	<table>
 		<tr>
 			<td>Вопрос</td>
@@ -21,9 +21,12 @@
 				<td><?php echo $value['date'];?></td>
 				<td><?php echo $value['status'];?></td>
 				<td>
-					<a href="?deleteQuestion=<?php echo $value['id'];?>">Удалить</a>
+					<form action="index.php" method="POST">
+						<input type="hidden" name="deleteQuestion" value = <?php echo $value['id'];?>>
+						<input type="submit" value="Удалить вопрос">
+					</form>
 					<a href="?editQuestion=<?php echo $value['id'];?>">Редактировать вопрос</a>
-					<form action="" method="POST">
+					<form action="index.php" method="POST">
 						<select name = 'category'>
 						<?php foreach ($this->pdo->query($categories -> categories) as $cat) {?>
 							<option value="<?php echo $cat['id'];?>"><?php echo $cat['category'];?></option>
@@ -33,14 +36,20 @@
 						<input type="submit" value="Переместить в другую папку">
 					</form>
 					<?php if ($value['status'] == 'published') {?>
-						<a href="?hiddenQuestion=<?php echo $value['id'];?>">Скрыть</a>
+						<form action="index.php" method="POST">
+						<input type="hidden" name="hiddenQuestion" value = <?php echo $value['id'];?>>
+						<input type="submit" value="Скрыть">
+						</form>
 					<?php } else { ?>
-						<a href="?publishedQuestion=<?php echo $value['id'];?>">Опубликовать</a>
+						<form action="index.php" method="POST">
+						<input type="hidden" name="publishedQuestion" value = <?php echo $value['id'];?>>
+						<input type="submit" value="Опубликовать">
+						</form>
 					<?php } ?>
 				</td>
 				<td>
 					<p><?php echo $value['login'];?></p>
-					<form action="" method="POST">
+					<form action="index.php" method="POST">
 						<input type="hidden" name="idQuestion" value="<?php echo $value['id'];?>">
 						<select name = 'editUser'>
 							<?php foreach ($this->pdo->query($users -> users) as  $logins) {?>

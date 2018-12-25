@@ -4,9 +4,9 @@
 	<title>Администратор сайта</title>
 </head>
 <body>
-	<p><a href="index.php?controller=UserHP">Выйти</a></p>
-	<form action="" method=POST>
-		<input type="text" name="category" placeholder="Напишите новую категорию">
+	<p><a href="index.php">Выйти</a></p>
+	<form action="index.php" method=POST>
+		<input type="text" name="newcategory" placeholder="Напишите новую категорию">
 		<input type="submit" value="Добавить">
 	</form>
 	<p><a href="view/formCreateNewAdmin.php">Создать нового администратора</a></p>
@@ -23,7 +23,10 @@
 		 	<tr>
 				<td><a href="?idcatadmin=<?php echo $value[1]?>&&category=<?php echo $value[0]?>"><?php echo $value[0]?></a></td>
 				<td>
-					<a href="?deleteCategory=<?php echo $value[1]?>">Удалить</a>	
+					<form action="index.php" method="POST">
+						<input type="hidden" name="deleteCategory" value="<?php echo $value[1]?>">
+						<input type="submit" value="Удалить">
+					</form>	
 				</td>
 				<td><?php echo $value[2]?></td>
 				<td><?php echo $value[3]?></td>
@@ -43,7 +46,12 @@
 					<td><?php echo $value['login']?></td>
 					<td><?php echo $value['password']?></td>
 					<td><a href="?editAdmin=<?php echo $value['id']?>">Изменить</a></td>
-					<td><a href="?deleteAdmin=<?php echo $value['id']?>">Удалить</a></td>
+					<td>
+						<form action="index.php" method="POST">
+						<input type="hidden" name="deleteAdmin" value="<?php echo $value['id']?>">
+						<input type="submit" value="Удалить">
+						</form>
+					</td>
 				</tr>
 			<?php } ?>
 	</table>

@@ -18,7 +18,7 @@
 <body>
 	<div class="row container-fluid">
 		<div class="col-md-1" ><a href="?ask=question">Задать вопрос</a></div>
-		<div class="col-md-2"><a href="index.php?controller=UserHP">Вернуться на домашнюю страницу</a></div>
+		<div class="col-md-2"><a href="index.php">Вернуться на домашнюю страницу</a></div>
 	</div>
 	<div class="row container col-md-6 col-md-offset-3">
 		<table class="table table-bordered table-striped">
