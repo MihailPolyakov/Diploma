@@ -7,31 +7,24 @@ class ControllerUserQA
 	private $pdo;
 
 	function __construct($pdo){
-		return $this->pdo = $pdo;
+		$this->pdo = $pdo;
 	}
 	//функция для вывода вопросов и отвтеов по тому id категории, которая получала функция
-	function questionsAnswers ($idCategory = NULL)
+	function questionsAnswers ()
 	{
-		if ($idCategory != NULL) {
-			$_SESSION['controller'] = 'UserQA';
-			$select = new SelectQuestionsAnswers;
-			require_once "view/questionsAnswers.php";
-		}
+		$select = new SelectQuestionsAnswers;
+		require_once "view/questionsAnswers.php";
 	}
 	//функция для переадресации на форму для добавления нового вопроса
-	function askQuestion ($ask = NULL)
+	function askQuestion ()
 	{
-		if ($ask != NULL) {
-			header('location: view/formAskQuestion.php');
-		}
+		header('location: view/formAskQuestion.php');
 	}
 	//функция на добавление отправленного вопроса
-	function insertQuestion ($name = NULL)
+	function insertQuestion ()
 	{
-		if ($name != NULL) {
-			$insertQuestion = new InsertNewQuestion;
-			$insertQuestion -> insertQuestion($_POST['name'], $_POST['mail'], $_POST['question'], $_SESSION['id'], $this->pdo);
-		}
+		$insertQuestion = new InsertNewQuestion;
+		$insertQuestion -> insertQuestion($_POST['name'], $_POST['mail'], $_POST['question'], $_SESSION['id'], $this->pdo);
 	}
 }
 
