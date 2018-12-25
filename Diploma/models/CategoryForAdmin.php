@@ -21,7 +21,6 @@ class CategoryForAdmin
 				$arrayCategory[$key][] = $value['id'];
 				$arrayCategory[$key][] = $questions['count_questions'];
 			}
-
 			foreach ($pdo->query($countPubQuestion) as $questions) {
 				$arrayCategory[$key][] = $questions['count_pub_questions'];
 			}
