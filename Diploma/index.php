@@ -73,7 +73,6 @@ $idCategory = new ControllerUserQA($pdo);
 
 	if (!empty($_GET['ask'])) {
 		$idCategory -> askQuestion();
-		$idCategory -> questionsAnswers();
 	}
 	
 	if (!empty($_POST['name'])) {
@@ -88,7 +87,6 @@ $idCategory = new ControllerUserQA($pdo);
 	}
 	if (!empty($_GET['editQuestion'])) {
 		$questionAnswers -> editQuestion();
-		$questionAnswers -> showQuestionsAnswers();
 	}
 	if (!empty($_POST['editQuestion'])) {
 		$questionAnswers -> newQuestion();
@@ -112,7 +110,6 @@ $idCategory = new ControllerUserQA($pdo);
 	}
 	if (!empty($_GET['editAnswer'])) {
 		$questionAnswers -> editAnswer();
-		$questionAnswers -> showQuestionsAnswers();
 	}
 	if (!empty($_POST['editAnswer'])) {
 		$questionAnswers -> postNewAnswer();
