@@ -18,7 +18,7 @@ class ControllerUserHP
 	}
 
 	function loginadmin() {
-		header('location:view/loginadmin.php');
+		require "view/loginadmin.php";
 	}
 	//функция для сохранения id категории и имя категории при нажатии на одну из категорий
 	function controllerUserQA()

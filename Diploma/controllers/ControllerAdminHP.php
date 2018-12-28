@@ -15,9 +15,15 @@ class ControllerAdminHP
 		$categories = new CategoryForAdmin($this->pdo);
 			//делаем проверку, на существование сессии с именем Админа
 		if (!empty($_SESSION['login'])) {
-			require_once 'view/adminHomePage.php';
+			if (empty($_POST['login'])) {
+				require_once 'view/adminHomePage.php';
+			} elseif ($checkadmin -> check($_POST['login'], $_POST['password'], $this->pdo) == 'false') {
+				require_once 'view/wrongLogIn.php';
+			} else {
+				require_once 'view/adminHomePage.php';
+			}
 		} elseif ($checkadmin -> check($_POST['login'], $_POST['password'], $this->pdo) == 'false') {
-			header('location: view/wrongLogIn.php');
+			require_once 'view/wrongLogIn.php';
 		} else {
 			//Если проверка прошла успешна, то делаем переадресацию с сохранением сессии.
 			$_SESSION['login'] = $_POST['login'];

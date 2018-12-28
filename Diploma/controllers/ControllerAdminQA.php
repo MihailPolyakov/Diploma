@@ -28,7 +28,7 @@ class ControllerAdminQA
 	function editQuestion()
 	{
 		$_SESSION['idQuestion'] = $_GET['editQuestion'];
-		header('location: view/formEditQuestion.php');
+		require_once "view/formEditQuestion.php";
 	}
 	//подключение функции на обновление вопроса после отправки форму с измененным вопроса
 	function newQuestion()
@@ -68,7 +68,7 @@ class ControllerAdminQA
 		if (!empty($_GET['editAnswer'])) {
 			$_SESSION['idQuestion'] = $_GET['editAnswer'];
 			$_SESSION['idAnswer'] = $_GET['idAnswer'];
-			header('location: view/formEditAnswer.php');
+			require_once "view/formEditAnswer.php";
 		}
 	}
 	//Запуск проверок с функциями на изменение или добавление нового ответа, с публикацие на сайте или со скрытием.

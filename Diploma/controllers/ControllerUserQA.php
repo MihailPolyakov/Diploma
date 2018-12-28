@@ -18,7 +18,7 @@ class ControllerUserQA
 	//функция для переадресации на форму для добавления нового вопроса
 	function askQuestion ()
 	{
-		header('location: view/formAskQuestion.php');
+		require_once "view/formAskQuestion.php";
 	}
 	//функция на добавление отправленного вопроса
 	function insertQuestion ()
