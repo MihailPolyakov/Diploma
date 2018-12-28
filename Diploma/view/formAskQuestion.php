@@ -12,7 +12,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-	<form action="../index.php" method="POST" class="form-horizontal container">
+	<form action="index.php" method="POST" class="form-horizontal container">
 		<div class="form-group">
 			<label for = "Question" class="col-sm-2 control-label">Вопрос</label>
 			<div class="col-sm-10">
